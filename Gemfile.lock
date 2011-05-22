@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    adapter-couch (0.1.1)
+    adapter-couch (0.1.2)
       adapter (~> 0.5.1)
       couchrest (~> 1.1.0.pre2)
 

@@ -23,9 +23,9 @@ shared_examples_for "a couch adapter" do
 
   Adapter::Spec::Types.each do |type, (key, key2)|
     it "writes Object values to keys that are #{type}s like a Hash" do
-      v = adapter.write(key, {:foo => :bar})
+      adapter.write(key, {:foo => :bar})
       # couch knows hashes
-      adapter[key].should == {'_id' => 'key', 'foo' => 'bar', '_rev' => v['rev']}
+      adapter[key].should == {'_id' => 'key', 'foo' => 'bar'}
     end
   end
 end
