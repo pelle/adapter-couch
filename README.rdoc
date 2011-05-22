@@ -1,11 +1,11 @@
-= adapter-mongo
+= adapter-couch
 
-Mongo adapter for adapter gem.
+CouchDB adapter for adapter gem.
 
-    require 'adapter/mongo'
+    require 'adapter/couch'
 
-    client  = Mongo::Connection.new.db('adapter')['testing']
-    adapter = Adapter[:mongo].new(client)
+    client  = CouchRest.database!("http://127.0.0.1:5984/adapter-couch-test")
+    adapter = Adapter[:couch].new(client)
     adapter.clear
 
     adapter.write('foo', 'bar')
@@ -21,6 +21,10 @@ Mongo adapter for adapter gem.
     puts 'Should be bar: ' + adapter.fetch('foo', 'bar')
 
 See examples/ or specs/ for more usage.
+
+==
+
+This is forked from https://github.com/jnunemaker/adapter-mongo
 
 == Note on Patches/Pull Requests
 

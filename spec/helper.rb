@@ -16,16 +16,16 @@ log_path.mkpath
 require 'adapter/spec/an_adapter'
 require 'adapter/spec/types'
 
-require 'adapter-mongo'
+require 'adapter-couch'
 
-shared_examples_for "a mongo adapter" do
+shared_examples_for "a couch adapter" do
   it_should_behave_like 'an adapter'
 
   Adapter::Spec::Types.each do |type, (key, key2)|
     it "writes Object values to keys that are #{type}s like a Hash" do
-      adapter[key] = {:foo => :bar}
-      # mongo knows hashes and can serialize symbol values
-      adapter[key].should == {'_id' => 'key', 'foo' => :bar}
+      v = adapter.write(key, {:foo => :bar})
+      # couch knows hashes
+      adapter[key].should == {'_id' => 'key', 'foo' => 'bar', '_rev' => v['rev']}
     end
   end
 end
