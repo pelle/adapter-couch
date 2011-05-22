@@ -7,7 +7,7 @@ $:.unshift(lib_path)
 
 require 'adapter/couch'
 
-client  = Couch::Connection.new.db('adapter')['testing']
+client  = CouchRest.database!("http://127.0.0.1:5984/adapter-couch-testing")
 adapter = Adapter[:couch].new(client)
 adapter.clear
 
